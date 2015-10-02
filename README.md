@@ -1,7 +1,6 @@
 # Flow (Short for Unity Workflow)
 
 ![Logo](http://flowerpickinggiants.de/art/flower-logo-small.png)
-![Plugin Content](http://flowerpickinggiants.de/art/flower-fullsize.png)
 
 This is a small collection of Editor Extensions I wrote during my work with Unity.
 Mainly it makes you stick more to the keyboard when assembling scenes or navigating in Unity.
