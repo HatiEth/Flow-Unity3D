@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+
+using Object = UnityEngine.Object;
 
 public class QuickSceneEditorWindow : EditorWindow {
 
@@ -36,7 +39,14 @@ public class QuickSceneEditorWindow : EditorWindow {
 
     public void OnGUI()
     {
-        Regex tmpRegEx = new Regex(searchReg.ToLower());
+        Regex tmpRegEx;
+        try {
+            tmpRegEx = new Regex(searchReg.ToLower());
+        }
+        catch(ArgumentException)
+        {
+            tmpRegEx = new Regex("");
+        }
         var tmpList = AssetFilePaths.Where(path => tmpRegEx.Matches(path.ToLower()).Count>0).ToList();
         CurrentSelectionIndex = Mathf.Clamp(CurrentSelectionIndex, 0, tmpList.Count -1);
 
