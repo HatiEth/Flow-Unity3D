@@ -1,5 +1,8 @@
 # Flow (Short for Unity Workflow)
 
+![Logo](http://flowerpickinggiants.de/art/flower-logo-small.png)
+![Plugin Content](http://flowerpickinggiants.de/art/flower-fullsize.png)
+
 This is a small collection of Editor Extensions I wrote during my work with Unity.
 
 Current Extensions:
@@ -50,8 +53,6 @@ Esc to close.
 ## Asset Store Package
 
 Asset Store Package is on the way.
-
-
 
 ## License
 
