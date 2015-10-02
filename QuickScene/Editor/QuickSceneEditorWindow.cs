@@ -12,13 +12,11 @@ public class QuickSceneEditorWindow : EditorWindow {
     public static void OpenEditorWindow()
     {
         var w = EditorWindow.GetWindow(typeof(QuickSceneEditorWindow)) as QuickSceneEditorWindow;
-        w.title = "QuickScene";
+        w.titleContent = new GUIContent("QuickScene");
         w.Show();
     }
 
     List<string> AssetFilePaths = new List<string>();
-
-
 
     public void OnEnable()
     {
@@ -32,8 +30,7 @@ public class QuickSceneEditorWindow : EditorWindow {
     }
 
     private Vector2 currentSceneScroll = new Vector2();
-    private string searchReg = "";
-
+    private static string searchReg = "";
     int CurrentSelectionIndex = 0;
 
 
@@ -55,12 +52,14 @@ public class QuickSceneEditorWindow : EditorWindow {
                 CurrentSelectionIndex++;
                 Event.current.Use();
                 CurrentSelectionIndex = Mathf.Clamp(CurrentSelectionIndex, 0, tmpList.Count -1);
+                currentSceneScroll.y += 23f;
             }
             if(Event.current.keyCode == KeyCode.UpArrow)
             {
                 CurrentSelectionIndex--;
                 Event.current.Use();
                 CurrentSelectionIndex = Mathf.Clamp(CurrentSelectionIndex, 0, tmpList.Count -1);
+                currentSceneScroll.y -= 23f;
             }
             if(Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.KeypadEnter)
             {
@@ -80,7 +79,7 @@ public class QuickSceneEditorWindow : EditorWindow {
         for (int i = 0; i < tmpList.Count; ++i)
         {
             GUI.color = i == CurrentSelectionIndex ? Color.white : Color.grey;
-            if (GUILayout.Button(tmpList[i]))
+            if (GUILayout.Button(tmpList[i], GUILayout.MinHeight(20f)))
             {
                 ChangeScene(tmpList[i]);
             }
