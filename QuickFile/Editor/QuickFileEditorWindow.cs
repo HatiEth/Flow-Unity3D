@@ -31,7 +31,6 @@ public class QuickFileEditorWindow : EditorWindow
         DirectoryInfo dirInfo = new DirectoryInfo(Application.dataPath);
 
         FileInfo[] files = dirInfo.GetFiles("*.*", SearchOption.AllDirectories);
-        Debug.Log(files.Length);
         Regex metaRegex = new Regex(".meta");
         Regex gitRegex = new Regex(".git");
 
@@ -39,17 +38,12 @@ public class QuickFileEditorWindow : EditorWindow
         //var tmp = files.Select(fi => fi.FullName).Where(name => metaRegex.Matches(name).Count == 0).Where(name => gitRegex.Matches(name).Count ==0 ).Except(Recent);
         var lscenes = files.Where(fi => fi.FullName.Contains("Default.unity")).ToList();
 
-        Debug.Log(lscenes.Count());
-        for(int i=0;i<lscenes.Count();++i)
-        {
-            Debug.Log(lscenes[i].FullName);
-        }
-
         var tmp = allAssetsInDB.Where(s => {
             var t = s.Replace('/', Path.DirectorySeparatorChar);
             return files.Any(fi => fi.FullName.EndsWith(t));
         });
         FilePaths.AddRange(tmp);
+        GUI.FocusControl("QuickFileSearchField");
     }
 
     public void OnGUI()
@@ -100,6 +94,7 @@ public class QuickFileEditorWindow : EditorWindow
 
         GUI.SetNextControlName("QuickFileSearchField");
         searchReg = EditorGUILayout.TextField("Search: ", searchReg);
+        GUI.FocusControl("QuickFileSearchField");
         currentSceneScroll = EditorGUILayout.BeginScrollView(currentSceneScroll, false, false);
         for (int i = 0; i < tmpList.Count; ++i)
         {
