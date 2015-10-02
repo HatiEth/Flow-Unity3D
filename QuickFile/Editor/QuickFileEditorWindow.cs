@@ -15,7 +15,7 @@ public class QuickFileEditorWindow : EditorWindow
     public static void OpenEditorWindow()
     {
         var w = EditorWindow.GetWindow<QuickFileEditorWindow>();
-        w.titleContent = new GUIContent("QuickScene");
+        w.titleContent = new GUIContent("QuickFile");
         w.Show();
     }
 
